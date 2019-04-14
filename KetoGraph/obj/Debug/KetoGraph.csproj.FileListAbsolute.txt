@@ -3,10 +3,10 @@ C:\Users\wal\source\repos\KetoGraph\KetoGraph\bin\Debug\KetoGraph.exe
 C:\Users\wal\source\repos\KetoGraph\KetoGraph\bin\Debug\KetoGraph.pdb
 C:\Users\wal\source\repos\KetoGraph\KetoGraph\bin\Debug\ZedGraph.dll
 C:\Users\wal\source\repos\KetoGraph\KetoGraph\obj\Debug\KetoGraph.csprojAssemblyReference.cache
-C:\Users\wal\source\repos\KetoGraph\KetoGraph\obj\Debug\KetoGraph.Form1.resources
 C:\Users\wal\source\repos\KetoGraph\KetoGraph\obj\Debug\KetoGraph.Properties.Resources.resources
 C:\Users\wal\source\repos\KetoGraph\KetoGraph\obj\Debug\KetoGraph.csproj.GenerateResource.cache
 C:\Users\wal\source\repos\KetoGraph\KetoGraph\obj\Debug\KetoGraph.csproj.CoreCompileInputs.cache
 C:\Users\wal\source\repos\KetoGraph\KetoGraph\obj\Debug\KetoGraph.csproj.CopyComplete
 C:\Users\wal\source\repos\KetoGraph\KetoGraph\obj\Debug\KetoGraph.exe
 C:\Users\wal\source\repos\KetoGraph\KetoGraph\obj\Debug\KetoGraph.pdb
+C:\Users\wal\source\repos\KetoGraph\KetoGraph\obj\Debug\KetoGraph.View.Botoes.resources
