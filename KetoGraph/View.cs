@@ -29,7 +29,15 @@ namespace KetoGraph.View
         {
             b = new Brain();
             string[,] a = new string[100, 3];
-            Loader(a, b);
+
+            try
+            {
+                Loader(a, b);
+            }
+            catch (IOException ex)
+            {
+                if (ex is FileNotFoundException) MessageBox.Show(ex.Message);
+            }
         }
         //Evento associado ao click do botão sair
         private void Fechar(object sender, EventArgs e)
@@ -39,21 +47,14 @@ namespace KetoGraph.View
 
         //O Loader chama um método dentro do Model que vai recolher os dados do ficheiro
         //e passá-los à matriz bidimensional para processar a informação
-        //Quando já tem o resultado, ReadCSV avisa para quem quiser subscrever
+        //Também subscreve Print a OnInfoIn
         public string[,] Loader(string[,] args, Brain pub)
         {
             string[,] a = new string[100, 3];
-            SubLoader(a, pub);
-            a = b.ReadCSV(a);
+
+            pub.OnInfoIn += Print;
+            a = pub.ReadCSV(a);
             return a;
-        }
-
-        //Print é um método que se subscreve ao ReadCSV
-        //de tal forma que só grafica os resultados se o Loader já foi chamado
-
-        public void SubLoader(string[,] args, Brain pub)
-        {
-            pub.OnInfoIn += Print;      //subscreve o método Print antes de chamar ReadCSV
         }
 
         public void Print(object sender, MatrixEventArgs e)
