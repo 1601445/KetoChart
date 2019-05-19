@@ -50,6 +50,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ICarga.cs" />
     <Compile Include="model.cs" />
     <Compile Include="View.cs">
       <SubType>Form</SubType>

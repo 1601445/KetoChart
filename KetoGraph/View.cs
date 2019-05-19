@@ -23,20 +23,26 @@ namespace KetoGraph.View
             InitializeComponent();
         }
 
-        //Temos 2 botões: Load e Sair(Fechar)
-        //Quando clicar no Load é chamado Loader, input do user
+
+        //Clicar no botao Load chama Loader, input do user
         private void ClicarLoad(object sender, EventArgs e)
         {
             b = new Brain();
+
             string[,] a = new string[100, 3];
+            string ficheiro;
 
             try
             {
-                Loader(a, b);
+                ficheiro = b.OpenBox();
+                if (ficheiro != "")
+                {
+                    Loader(a, b, ficheiro);
+                }
             }
-            catch (IOException ex)
+            catch (ArgumentNullException ex)
             {
-                if (ex is FileNotFoundException) MessageBox.Show(ex.Message);
+                MessageBox.Show(ex.Message);
             }
         }
         //Evento associado ao click do botão sair
@@ -45,18 +51,17 @@ namespace KetoGraph.View
             Close();
         }
 
-        //O Loader chama um método dentro do Model que vai recolher os dados do ficheiro
-        //e passá-los à matriz bidimensional para processar a informação
-        //Também subscreve Print a OnInfoIn
-        public string[,] Loader(string[,] args, Brain pub)
+        //O Loader chama um método dentro do Model
+        public string[,] Loader(string[,] args, Brain pub, string ficheiro)
         {
-            string[,] a = new string[100, 3];
 
+            string[,] a = new string[100, 3];
             pub.OnInfoIn += Print;
-            a = pub.ReadCSV(a);
+            a = pub.ReadCSV(a, ficheiro);
             return a;
         }
 
+        //Print imprime as linhas
         public void Print(object sender, MatrixEventArgs e)
         {
             int d;

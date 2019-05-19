@@ -10,7 +10,7 @@ using KetoGraph.View;
 
 namespace KetoGraph
 {
-    static class Program
+    public class Program
     {
         /// <summary>
         /// The main entry point for the application.
@@ -23,7 +23,6 @@ namespace KetoGraph
             Application.SetCompatibleTextRenderingDefault(false);
 
             Brain pub = new Brain();
-            Botoes sub = new Botoes();
 
             Application.Run(new Botoes());
         }
