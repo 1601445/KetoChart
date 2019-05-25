@@ -1,18 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.IO;
-using ZedGraph;
+using KetoGraph.View;
 
 namespace KetoGraph.Model
 {
-
     //Classe personalisada para poder mandar informação 
     //através dos eventos.
     public class MatrixEventArgs : EventArgs
@@ -31,8 +24,7 @@ namespace KetoGraph.Model
 
     public class Brain : ICarga
     {
-        // Com C# 2.0 podemos usar a versão genérica sem precisar de delegado personalizado.
-        // Uso por tanto o formato public event EventHandler<CustomEventArgs> RaiseCustomEvent;
+        // Uso o formato public event EventHandler<CustomEventArgs> RaiseCustomEvent;
 
         public event EventHandler<MatrixEventArgs> OnInfoIn;
 

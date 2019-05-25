@@ -1,49 +1,55 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.IO;
 using ZedGraph;
 using KetoGraph.Model;
 
 
 namespace KetoGraph.View
 {
+    interface ICarga
+    {
+        string[,] ReadCSV(string[,] args, string ficheiro);
+        string OpenBox();
+        event EventHandler<MatrixEventArgs> OnInfoIn;
+    }
+
     public partial class Botoes : Form
     {
-        static Brain b;
+        ICarga leitura = new Brain();
+        bool desenhado = false;
 
         public Botoes()
         {
             InitializeComponent();
         }
 
-
-        //Clicar no botao Load chama Loader, input do user
+        //Clicar no botao Load vai buscar o ficheiro e chama Loader, input do user
         private void ClicarLoad(object sender, EventArgs e)
         {
-            b = new Brain();
-
             string[,] a = new string[100, 3];
             string ficheiro;
 
-            try
+            if (desenhado == false)
             {
-                ficheiro = b.OpenBox();
-                if (ficheiro != "")
+                try
                 {
-                    Loader(a, b, ficheiro);
+                    ficheiro = leitura.OpenBox();
+                    if (ficheiro != "")
+                    {
+                        Loader(a, ficheiro);
+                    }
+                }
+                catch (ArgumentNullException ex)
+                {
+                    MessageBox.Show(ex.Message);
                 }
             }
-            catch (ArgumentNullException ex)
+            else
             {
-                MessageBox.Show(ex.Message);
+                MessageBox.Show("Os dados já foram carregados");
             }
+
         }
         //Evento associado ao click do botão sair
         private void Fechar(object sender, EventArgs e)
@@ -51,13 +57,12 @@ namespace KetoGraph.View
             Close();
         }
 
-        //O Loader chama um método dentro do Model
-        public string[,] Loader(string[,] args, Brain pub, string ficheiro)
+        //O Loader chama um método dentro do Model usando a interface ICarga 
+        public string[,] Loader(string[,] args, string ficheiro)
         {
-
             string[,] a = new string[100, 3];
-            pub.OnInfoIn += Print;
-            a = pub.ReadCSV(a, ficheiro);
+            leitura.OnInfoIn += Print;
+            a = leitura.ReadCSV(a, ficheiro);
             return a;
         }
 
@@ -103,6 +108,7 @@ namespace KetoGraph.View
             zedGraphControl1.AxisChange();
             zedGraphControl1.Invalidate();
             zedGraphControl1.Refresh();
+            desenhado = true;
         }
     }
 }

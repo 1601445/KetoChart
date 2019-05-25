@@ -1,14 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.IO;
-using KetoGraph.Model;
 using KetoGraph.View;
 
 
-namespace KetoGraph
+namespace Excel
 {
     public class Program
     {
@@ -21,8 +16,6 @@ namespace KetoGraph
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-
-            Brain pub = new Brain();
 
             Application.Run(new Botoes());
         }
